@@ -16,8 +16,8 @@ with col2:
     if(st.button("Admin Portal",type="primary")):
         if "admin_verified" not in st.session_state:
             st.session_state.admin_verified=False
-    admin_name=st.text_input("Enter the admin username : ")
-    admin_pass=st.text_input("Enter the admin password : ")
+            admin_name=st.text_input("Enter the admin username : ")
+            admin_pass=st.text_input("Enter the admin password : ")
     if(st.button("Submit",type="primary")):
         if(admin_name==st.secrets["admin_username"] and admin_pass==st.secrets["admin_password"]):
             st.success("Your admin details are verified successfully...!!")
