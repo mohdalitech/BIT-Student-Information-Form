@@ -13,7 +13,8 @@ st.set_page_config(
     page_title="Student Information Form",
     layout="wide"
 )
-admin_page = st.Page("pages/admin.py")
+admin_page = st.Page("pages/admin.py",title="Admin Page")
+pg=st.navigation([admin page],position="hidden")
 col1,col2=st.columns(2)
 with col1:
     st.header("🎓STUDENT INFORMATION FORM")
@@ -42,7 +43,7 @@ Semester_Status=st.selectbox(
     ["Active","Completed","Dropped"],
     width=500
 )
-if "view_reponse" not in st.session_state:
+if "view_response" not in st.session_state:
     st.session_state.view_response=False
 if st.button("Submit Your Response",type="primary"):
     skills=[skill.strip() for skill in Skills.split(",")]
