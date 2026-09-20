@@ -9,6 +9,10 @@ connection = mysql.connector.connect(
     database=st.secrets["mysql"]["database"]
 )
 cursor=connection.cursor()
+st.set_page_config(
+    page_title="Student Information Form",
+    layout="wide"
+)
 col1,col2=st.columns(2)
 with col1:
     st.header("🎓STUDENT INFORMATION FORM")
