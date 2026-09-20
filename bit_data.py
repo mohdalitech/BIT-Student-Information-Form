@@ -18,10 +18,10 @@ with col2:
             st.session_state.admin_verified=False
             admin_name=st.text_input("Enter the admin username : ")
             admin_pass=st.text_input("Enter the admin password : ")
-    if(st.button("Submit",type="primary")):
-        if(admin_name==st.secrets["admin_username"] and admin_pass==st.secrets["admin_password"]):
-            st.success("Your admin details are verified successfully...!!")
-            st.session_state.admin_verified=True
+            if(st.button("Submit",type="primary")):
+                if(admin_name==st.secrets["admin_username"] and admin_pass==st.secrets["admin_password"]):
+                    st.success("Your admin details are verified successfully...!!")
+                    st.session_state.admin_verified=True
         if(st.session_state.admin_verified):
             st.subheader("All students records:")
             sql="""
