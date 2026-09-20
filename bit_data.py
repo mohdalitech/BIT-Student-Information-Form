@@ -83,10 +83,11 @@ if st.session_state.admin_clicked:
             st.session_state.admin_verified=True
 if(st.session_state.admin_verified):
     st.subheader("All students records:")
-cursor=connection.cursor(dictionary=True)
     sql="""
     SELECT * FROM btech_3rd_year;
     """
+    cursor=connection.cursor(dictionary=True)
+        
     cursor.execute(sql)
     results=cursor.fetchall()
     if results:
