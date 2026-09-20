@@ -1,13 +1,16 @@
 import streamlit as st
 import mysql.connector
 import json
-connection = mysql.connector.connect(
-    host=st.secrets["mysql"]["host"],
-    port=int(st.secrets["mysql"]["port"]),
-    user=st.secrets["mysql"]["user"],
-    password=st.secrets["mysql"]["password"],
-    database=st.secrets["mysql"]["database"]
-)
+@st.cache_resource
+def get_db_connection():
+    return mysql.connector.connect(
+        host=st.secrets["mysql"]["host"],
+        port=int(st.secrets["mysql"]["port"]),
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"]
+    )
+connection=get_db_connection()
 cursor=connection.cursor()
 col1,col2=st.columns(2)
 with col1:
@@ -35,7 +38,7 @@ Semester_Status=st.selectbox(
     "What is your semester status ? ",
     ["Active","Completed","Dropped"]
 )
-if "view_reponse" not in st.session_state:
+if "view_response" not in st.session_state:
     st.session_state.view_response=False
 if st.button("Submit Your Response",type="primary"):
     skills=[skill.strip() for skill in Skills.split(",")]
