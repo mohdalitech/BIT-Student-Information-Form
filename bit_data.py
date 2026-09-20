@@ -42,7 +42,7 @@ if st.button("Submit Your Response",type="primary"):
     cursor.execute(sql,(Student_ID,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,json.dumps(skills),Semester_Status))
     connection.commit()
     st.success("Your response has been recorded..!")
-if(st.button("View Your Response"):
+if(st.button("View Your Response",type="primary")):
     try:
         connection=get_db_connection()
         cursor=connection.cursor(dictionary=True)
