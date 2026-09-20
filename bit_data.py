@@ -97,13 +97,14 @@ if(st.session_state.admin_verified):
             "Do you want to clear record? This action cannot be undone!",
             ["Yes","No"]
         )
-        if(confirm_check=="Yes"):
-            sql="""
-            TRUNCATE TABLE btech_3rd_year
-            """
-            cursor.execute(sql)
-            connection.commit()
-        else:
-            st.success("The data has not been erased!!")
+        if st.button("Confirm",type="primary"):
+                if(confirm_check=="Yes"):
+                    sql="""
+                    TRUNCATE TABLE btech_3rd_year
+                    """
+                    cursor.execute(sql)
+                    connection.commit()
+                else:
+                    st.success("The data has not been erased!!")
 else:
     st.error("Try entering correct credentials if you're are valid admin!")
