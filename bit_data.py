@@ -106,5 +106,5 @@ if(st.session_state.admin_verified):
                     connection.commit()
                 else:
                     st.success("The data has not been erased!!")
-else:
-        st.error("Try entering correct credentials if you're are valid admin!")
+        else:
+                st.error("Try entering correct credentials if you're are valid admin!")
