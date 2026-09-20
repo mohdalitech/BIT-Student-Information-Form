@@ -9,7 +9,12 @@ connection = mysql.connector.connect(
     database=st.secrets["mysql"]["database"]
 )
 cursor=connection.cursor()
-st.header("🎓STUDENT INFORMATION FORM")
+col1,col2=st.columns(2)
+with col1:
+    st.header("🎓STUDENT INFORMATION FORM")
+with col2:
+    if(st.button("Admin Page",type="primary")):
+        st.switch_page("admin.py")
 st.divider()
 student_id=st.text_input("Enter your student id :",placeholder="BIT_001")
 Student_Name=st.text_input("Enter your name :",placeholder="Rajit")
