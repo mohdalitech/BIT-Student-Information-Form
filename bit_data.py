@@ -2,15 +2,13 @@ import streamlit as st
 import mysql.connector
 import json
 @st.cache_resource
-def get_db_connection():
-    return mysql.connector.connect(
+connection=mysql.connector.connect(
         host=st.secrets["mysql"]["host"],
         port=int(st.secrets["mysql"]["port"]),
         user=st.secrets["mysql"]["user"],
         password=st.secrets["mysql"]["password"],
         database=st.secrets["mysql"]["database"]
     )
-connection=get_db_connection()
 cursor=connection.cursor()
 col1,col2=st.columns(2)
 with col1:
