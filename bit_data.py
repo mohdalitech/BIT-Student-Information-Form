@@ -39,7 +39,7 @@ if st.button("Submit Your Response",type="primary"):
     sql="""SELECT Student_ID FROM btech_3rd_year
             WHERE Student_ID=%s
         """
-    cursor.execute(sql,student_id)
+    cursor.execute(sql,(student_id,))
     result=cursor.fetchone()
     if result:
         st.error("A record with this student_id already exists!")
