@@ -1,12 +1,16 @@
 import streamlit as st
 import mysql.connector
-connections=mysql.connector.connect(
-    host=st.secrets["mysql"]["host"],
-    user=st.secrets["mysql"]["user"],
-    password=st.secrets["mysql"]["password"],
-    database=st.secrets["mysql"]["database"]
-)
-cursor=connections.cursor()
+@st.cache_resource
+def get_db_connection():
+    return mysql.connector.connect(
+        host=st.secrets["mysql"]["host"],
+        port=int(st.secrets["mysql"]["port"]),
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"]
+    )
+connection=get_db_connection()
+cursor=connection.cursor()
 st.header("🛡️ ADMIN PAGE- STUDENT INFORMATION FORM")
 st.divider()
 if "admin_verified" not in st.session_state:
