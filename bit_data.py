@@ -60,7 +60,7 @@ if st.button("Submit Your Response",type="primary"):
             SELECT * FROM btech_3rd_year
             WHERE Student_ID=%s
             """
-            cursor.execute(sql,student_id)
+            cursor.execute(sql,(student_id,))
             records=cursor.fetchall()
             if records:
                 st.dataframe(records,use_container_width=True)
