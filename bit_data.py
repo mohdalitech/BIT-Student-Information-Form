@@ -1,7 +1,6 @@
 import streamlit as st
 import mysql.connector
 import json
-@st.cache_resource
 connection=mysql.connector.connect(
         host=st.secrets["mysql"]["host"],
         port=int(st.secrets["mysql"]["port"]),
