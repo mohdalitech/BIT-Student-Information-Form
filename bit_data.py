@@ -11,7 +11,7 @@ connection = mysql.connector.connect(
 cursor=connection.cursor()
 st.header("🎓STUDENT INFORMATION FORM")
 st.divider()
-Student_ID=st.text_input("Enter your student id :",placeholder="BIT_001")
+student_id=st.text_input("Enter your student id :",placeholder="BIT_001")
 Student_Name=st.text_input("Enter your name :",placeholder="Rajit")
 Gender=st.selectbox(
     "Choose your gender :",
@@ -30,6 +30,8 @@ Semester_Status=st.selectbox(
     "What is your semester status ? ",
     ["Active","Completed","Dropped"]
 )
+if "view_reponse" not in st.session_state:
+    st.session_state.view_response=False
 if st.button("Submit Your Response",type="primary"):
     skills=[skill.strip() for skill in Skills.split(",")]
     if(len(skills)!=3):
@@ -42,19 +44,20 @@ if st.button("Submit Your Response",type="primary"):
     cursor.execute(sql,(Student_ID,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,json.dumps(skills),Semester_Status))
     connection.commit()
     st.success("Your response has been recorded..!")
-    if(st.button("View Your Response",type="primary")):
-        try:
-            connection=get_db_connection()
-            cursor=connection.cursor(dictionary=True)
-            sql="""
-            SELECT * FROM btech_3rd_year
-            WHERE Student_ID=Student_ID
-            """
-            cursor.execute(sql)
-            records=cursor.fetchall()
-            if records:
-                st.dataframe(records,use_container_width=True)
-            else:
-                st.error("No records found!!")
-        except Exception as e:
-            st.error(f"Error fetching record:{e}")
+    st.session_state.view_response=True
+if(st.session_state.view_response):
+    try:
+        connection=get_db_connection()
+        cursor=connection.cursor(dictionary=True)
+        sql="""
+        SELECT * FROM btech_3rd_year
+        WHERE Student_ID=%s
+        """
+        cursor.execute(sql,student_id)
+        records=cursor.fetchall()
+        if records:
+            st.dataframe(records,use_container_width=True)
+        else:
+            st.error("No records found!!")
+    except Exception as e:
+        st.error(f"Error fetching record:{e}")
