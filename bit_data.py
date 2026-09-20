@@ -36,28 +36,36 @@ if st.button("Submit Your Response",type="primary"):
     skills=[skill.strip() for skill in Skills.split(",")]
     if(len(skills)!=3):
         st.toast("Skills count is not 3!")
-    sql="""
-    INSERT INTO btech_3rd_year
-    (Student_ID,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,Skills,Semester_Status)
-    VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-    """
-    cursor.execute(sql,(student_id,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,json.dumps(skills),Semester_Status))
-    connection.commit()
-    st.success("Your response has been recorded..!")
-    st.session_state.view_response=True
-if(st.session_state.view_response):
-    try:
-        connection=get_db_connection()
-        cursor=connection.cursor(dictionary=True)
-        sql="""
-        SELECT * FROM btech_3rd_year
-        WHERE Student_ID=%s
+    sql="""SELECT Student_ID FROM btech_3rd_year
+            WHERE Student_ID=%s
         """
-        cursor.execute(sql,student_id)
-        records=cursor.fetchall()
-        if records:
-            st.dataframe(records,use_container_width=True)
-        else:
-            st.error("No records found!!")
-    except Exception as e:
-        st.error(f"Error fetching record:{e}")
+    cursor.execute(sql,student_id)
+    result=cursor.fetchone()
+    if result:
+        st.error("A record with this student_id already exists!")
+    else:
+        sql="""
+        INSERT INTO btech_3rd_year
+        (Student_ID,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,Skills,Semester_Status)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """
+        cursor.execute(sql,(student_id,Student_Name,Gender,cgpa,Attendance_Percentage,Total_distance,Roll_No,Address,dob,Class_Time,Admission_DateTime,json.dumps(skills),Semester_Status))
+        connection.commit()
+        st.success("Your response has been recorded..!")
+        st.session_state.view_response=True
+    if(st.session_state.view_response):
+        try:
+            connection=get_db_connection()
+            cursor=connection.cursor(dictionary=True)
+            sql="""
+            SELECT * FROM btech_3rd_year
+            WHERE Student_ID=%s
+            """
+            cursor.execute(sql,student_id)
+            records=cursor.fetchall()
+            if records:
+                st.dataframe(records,use_container_width=True)
+            else:
+                st.error("No records found!!")
+        except Exception as e:
+            st.error(f"Error fetching record:{e}")
