@@ -1,0 +1,11 @@
+# Ignore Streamlit secrets containing your database passwords
+.streamlit/secrets.toml
+
+# Ignore Python cache and environment files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+env/
