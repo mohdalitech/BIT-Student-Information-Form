@@ -20,24 +20,26 @@ with col2:
     if(st.button("Admin Page",type="primary")):
         st.switch_page("admin.py")
 st.divider()
-student_id=st.text_input("Enter your student id :",placeholder="BIT_001")
-Student_Name=st.text_input("Enter your name :",placeholder="Rajit")
+student_id=st.text_input("Enter your student id :",placeholder="BIT_001",width=500)
+Student_Name=st.text_input("Enter your name :",placeholder="Rajit",width=500)
 Gender=st.selectbox(
     "Choose your gender :",
-    ["M","F"]
+    ["M","F"],
+    width=500
 )
-cgpa=st.number_input("Enter your current cgpa : ",placeholder="8.12")
-Attendance_Percentage=st.number_input("What is percentage of your attendance ?",placeholder="75.5")
-Total_distance=st.number_input("Enter total distance from home to BIT ?",placeholder="20.00")
-Roll_No=st.text_input("Enter your 13 digit roll no :",placeholder="1234567890012")
-Address=st.text_area("What is the your address ?",placeholder="Complete address")
-dob=st.date_input("Enter your date of birth : ")
-Class_Time=st.time_input("At what time class starts ? ")
-Admission_DateTime=st.datetime_input("When have you taken admission ? ")
-Skills=st.text_input("Enter your 3 skills comma separated : ",placeholder="python,java,writing")
+cgpa=st.number_input("Enter your current cgpa : ",placeholder="8.12",width=500)
+Attendance_Percentage=st.number_input("What is percentage of your attendance ?",placeholder="75.5",width=500)
+Total_distance=st.number_input("Enter total distance from home to BIT ?",placeholder="20.00",width=500)
+Roll_No=st.text_input("Enter your 13 digit roll no :",placeholder="1234567890012",width=500)
+Address=st.text_area("What is the your address ?",placeholder="Complete address",width=500)
+dob=st.date_input("Enter your date of birth : ",width=500)
+Class_Time=st.time_input("At what time class starts ? ",width=500)
+Admission_DateTime=st.datetime_input("When have you taken admission ? ",width=500)
+Skills=st.text_input("Enter your 3 skills comma separated : ",placeholder="python,java,writing",width=500)
 Semester_Status=st.selectbox(
     "What is your semester status ? ",
-    ["Active","Completed","Dropped"]
+    ["Active","Completed","Dropped"],
+    width=500
 )
 if "view_reponse" not in st.session_state:
     st.session_state.view_response=False
