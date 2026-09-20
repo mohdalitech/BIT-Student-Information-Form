@@ -19,7 +19,7 @@ with col1:
     st.header("🎓STUDENT INFORMATION FORM")
 with col2:
     if(st.button("Admin Page",type="primary")):
-        st.switch_page("admin_page")
+        st.switch_page(admin_page)
 st.divider()
 student_id=st.text_input("Enter your student id :",placeholder="BIT_001",width=500)
 Student_Name=st.text_input("Enter your name :",placeholder="Rajit",width=500)
