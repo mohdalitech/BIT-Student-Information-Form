@@ -7,6 +7,10 @@ connections=mysql.connector.connect(
     database=st.secrets["mysql"]["database"]
 )
 cursor=connections.cursor()
+st.set_page_config(
+    page_title="Student Information Form",
+    layout="wide"
+)
 st.header("🛡️ ADMIN PAGE- STUDENT INFORMATION FORM")
 st.divider()
 if "admin_verified" not in st.session_state:
