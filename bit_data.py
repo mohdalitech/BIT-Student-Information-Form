@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide"
 )
 admin_page = st.Page("pages/admin.py",title="Admin Page")
-pg=st.navigation([admin page],position="hidden")
+pg=st.navigation([admin_page],position="hidden")
 pg.run()
 col1,col2=st.columns(2)
 with col1:
