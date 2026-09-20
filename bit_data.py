@@ -55,7 +55,6 @@ if st.button("Submit Your Response",type="primary"):
         st.session_state.view_response=True
     if(st.session_state.view_response):
         try:
-            connection=get_db_connection()
             cursor=connection.cursor(dictionary=True)
             sql="""
             SELECT * FROM btech_3rd_year
