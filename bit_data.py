@@ -13,12 +13,13 @@ st.set_page_config(
     page_title="Student Information Form",
     layout="wide"
 )
+admin_page = st.Page("pages/admin.py")
 col1,col2=st.columns(2)
 with col1:
     st.header("🎓STUDENT INFORMATION FORM")
 with col2:
     if(st.button("Admin Page",type="primary")):
-        st.switch_page("pages/admin.py")
+        st.switch_page("admin_page")
 st.divider()
 student_id=st.text_input("Enter your student id :",placeholder="BIT_001",width=500)
 Student_Name=st.text_input("Enter your name :",placeholder="Rajit",width=500)
