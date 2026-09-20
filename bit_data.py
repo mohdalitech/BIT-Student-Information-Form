@@ -9,7 +9,7 @@ connection = mysql.connector.connect(
     database=st.secrets["mysql"]["database"]
 )
 cursor=connection.cursor()
-st.header("🎓BIT STUDENT INFORMATION FORM")
+st.header("🎓STUDENT INFORMATION FORM")
 st.divider()
 Student_ID=st.text_input("Enter your student id :",placeholder="BIT_001")
 Student_Name=st.text_input("Enter your name :",placeholder="Rajit")
